@@ -6,8 +6,13 @@ import { CollectionView } from 'wijmo/wijmo';
 import { FlexGrid } from 'wijmo/wijmo.react.grid';
 
 import { helper } from './code/helper';
+import { getAuthor } from './data/author';
 import { getBooks } from './data/book';
-
+import { getBookStores } from './data/bookstore'
+import { getInventory } from './data/inventory'
+import { getLineItems } from './data/invoiceLineItem'
+import { getSalesReps } from './data/salesrep'
+import { getWarehouses } from './data/warehouse'
 
 class App extends Component {
 	constructor(props) {
@@ -16,7 +21,6 @@ class App extends Component {
 		this.state = {
 			books: getBooks()
 		};
-		// window.helper = helper;  // this allows us to test helper methods on console
 	}
 	
 	render() {
@@ -31,11 +35,9 @@ class App extends Component {
 class BookGrid extends React.Component {
   render() {
     return (
-			<>
-				<FlexGrid
-					itemsSource={this.props.books}
-				/>
-			</>
+			<FlexGrid
+				itemsSource={this.props.books}
+			/>
     );
   }
 }
