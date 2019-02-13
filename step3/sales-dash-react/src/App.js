@@ -6,7 +6,7 @@ import { CollectionView } from 'wijmo/wijmo';
 import { FlexGrid } from 'wijmo/wijmo.react.grid';
 
 import { helper } from './code/helper';
-import { getAuthor } from './data/author';
+import { getAuthors } from './data/author';
 import { getBooks } from './data/book';
 import { getBookStores } from './data/bookstore'
 import { getInventory } from './data/inventory'
