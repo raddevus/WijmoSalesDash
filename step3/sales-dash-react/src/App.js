@@ -6,6 +6,7 @@ import { CollectionView } from 'wijmo/wijmo';
 import { FlexGrid } from 'wijmo/wijmo.react.grid';
 
 import { getBooks } from './data/book';
+import { helper } from './code/helper';
 
 class App extends Component {
 	constructor(props) {
@@ -14,8 +15,9 @@ class App extends Component {
 		this.state = {
 			books: getBooks()
 		};
+		// window.helper = helper;  // this allows us to test helper methods on console
 	}
-
+	
 	render() {
 		return (
 			<div>
