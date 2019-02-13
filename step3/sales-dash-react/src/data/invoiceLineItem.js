@@ -1,6 +1,6 @@
 //invoiceLineItem
 // {id:,saleDate:,quantity:,salePriceEach:,salesRepId:,bookstoreId:,bookId:,warehouseId:}
-function getLineItems(){
+export function getLineItems(){
 	var allLineItems = [
 		{id:1,saleDate:"2018-05-01",quantity:300,salePriceEach:2.50,salesRepId:1,bookstoreId:1,bookId:1,warehouseId:1},
 		{id:2,saleDate:"2018-05-01",quantity:370,salePriceEach:3.25,salesRepId:1,bookstoreId:1,bookId:1,warehouseId:2},

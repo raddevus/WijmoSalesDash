@@ -1,6 +1,6 @@
 //inventory.json
 // {id:,warehouseId:,bookId:,quantity:}
-function getInventory(){
+export function getInventory(){
 	var allInventory = [
 		{id:1,warehouseId:1,bookId:1,quantity:330},
 		{id:2,warehouseId:1,bookId:2,quantity:839},

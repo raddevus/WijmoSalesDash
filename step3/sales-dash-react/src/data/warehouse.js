@@ -1,6 +1,6 @@
 // warehouse.json
 // {id:,name:"",location:""}
-function getWarehouses(){
+export function getWarehouses(){
 	var allWarehouses = [
 		{id:1,name:"main warehouse",location:"New York"},
 		{id:2,name:"south warehouse",location:"Alabama"},
