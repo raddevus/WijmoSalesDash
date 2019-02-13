@@ -4,6 +4,7 @@ import './App.css';
 import 'wijmo/styles/wijmo.css';
 import { CollectionView } from 'wijmo/wijmo';
 import { FlexGrid } from 'wijmo/wijmo.react.grid';
+import { FlexChart } from 'wijmo/wijmo.react.chart';
 
 import { helper } from './code/helper';
 import { getAuthors } from './data/author';
@@ -20,7 +21,8 @@ class App extends Component {
 
 		this.state = {
 			dto: this.buildDTO(),
-			authors: getAuthors()
+			authors: this.buildDTO(),
+			data:this.getChartData()
 		};
 	}
 	
@@ -37,7 +39,20 @@ class App extends Component {
 		  });
 		}
 		console.log(dto);
-		return dto;//new CollectionView(dto);
+		return dto;
+	}
+	
+	getChartData(){
+	  var countries = 'US,Germany,UK,Japan,Italy,Greece'.split(','),
+      data = [];
+		for (var i = 0; i < countries.length; i++) {
+			data.push({
+			  country: countries[i],
+			  downloads: Math.round(Math.random() * 20000),
+			  sales: Math.random() * 10000,
+			  expenses: Math.random() * 5000
+			});
+		}
 	}
 	
 	render() {
@@ -47,7 +62,7 @@ class App extends Component {
 				<BookGrid  books={this.state.dto} />
 				</div>
 				<div id="adjustR">
-				<AuthorGrid authors={this.state.authors} />
+				<SalesChart authors={this.state.dto} />
 				</div>
 			</div>
 		);
@@ -64,11 +79,12 @@ class BookGrid extends React.Component {
   }
 }
 
-class AuthorGrid extends React.Component {
+class SalesChart extends React.Component {
   render() {
     return (
-			<FlexGrid
-				itemsSource={this.props.authors}
+			<FlexChart
+			{itemsSource:{this.props.data}}
+				{bindingX:{this.props.data.country}}
 			/>
     );
   }
