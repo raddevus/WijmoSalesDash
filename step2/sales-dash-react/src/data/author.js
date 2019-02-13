@@ -1,7 +1,7 @@
 //author.json
 // Author {"id":,"name":""}
-function getAuthors() {
-	allAuthors = [
+export function getAuthors() {
+	var allAuthors = [
 	{"id":1,"name":"Grisham,John"},
 	{"id":2,"name":"Baldacci,David"},
 	{"id":3,"name":"Cussler,Clive"},

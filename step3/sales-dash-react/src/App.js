@@ -5,8 +5,9 @@ import 'wijmo/styles/wijmo.css';
 import { CollectionView } from 'wijmo/wijmo';
 import { FlexGrid } from 'wijmo/wijmo.react.grid';
 
-import { getBooks } from './data/book';
 import { helper } from './code/helper';
+import { getBooks } from './data/book';
+
 
 class App extends Component {
 	constructor(props) {

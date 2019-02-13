@@ -6,6 +6,8 @@ import 'wijmo/styles/wijmo.css';
 import { CollectionView } from 'wijmo/wijmo';
 import { FlexGrid } from 'wijmo/wijmo.react.grid';
 
+import { helper } from './code/helper';
+
 class App extends Component {
   render() {
     return (

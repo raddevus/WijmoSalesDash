@@ -1,6 +1,6 @@
 //bookstore.js
 // {id:,name:"",location:""}
-function getBookStores(){
+export function getBookStores(){
 	var allBookStores = [
 		{id:1,name:"Barnes & Noble",location:"Georgia"},
 		{id:2,name:"Barnes & Noble",location:"New York"},

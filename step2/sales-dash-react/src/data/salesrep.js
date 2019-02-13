@@ -1,6 +1,6 @@
 //salesrep.json
 // {id:,name:"",location:""}
-function getSalesReps(){
+export function getSalesReps(){
 	var allSalesReps = [
 		{id:1,name:"Fudd,Elmer",location:"Dallas"},
 		{id:2,name:"Flintstone,Fred",location:"Bedrock"},
