@@ -52,7 +52,8 @@ class App extends Component {
 			  bookstore: bookstores[i].name + "("+ bookstores[i].location + ")",
 			  sales: this.calculateSalesAndQuantityByStore(h,bookstores[i].id)[0],
 			  quantity: this.calculateSalesAndQuantityByStore(h,bookstores[i].id)[1],
-			  expenses: this.calculateCostOfGoodsSold(h,bookstores[i].id)
+			  expenses: this.calculateCostOfGoodsSold(h,bookstores[i].id),
+			  salesRepDollars : this.calculateSalesBySalesRep(h,bookstores[i].id,1)
 			});
 		}
 		return data;
@@ -84,6 +85,18 @@ class App extends Component {
 		salesAndQuantity.push(totalStoreSales);
 		salesAndQuantity.push(totalStoreQuantity);
 		return salesAndQuantity;
+	}
+	
+	calculateSalesBySalesRep(helper,storeId,salesRepId){
+		var lineItems = helper.selectItemsById(getLineItems(), "bookstoreId", storeId);
+		var repSales = 0;
+		for (var itemCount = 0; itemCount < lineItems.length;itemCount++){
+			if (lineItems[itemCount].salesRepId == salesRepId){
+				repSales += lineItems[itemCount].salePriceEach * lineItems[itemCount].quantity;
+				console.log("repSales : " + repSales);
+			}
+		}
+		return repSales;
 	}
 	
 	render() {
@@ -119,7 +132,8 @@ class SalesChart extends React.Component {
 				series={[
 					{ binding: 'sales', name: 'Sales' },
 				  { binding: 'expenses', name: 'Cost of Goods' },
-				  { binding: 'quantity', name: 'Books Sold' }
+				  { binding: 'quantity', name: 'Books Sold' },
+				  { binding: 'salesRepDollars', name: 'SalesRep1 Dollars', chartType:'LineSymbols' }
 				]}
 			/>
     );
