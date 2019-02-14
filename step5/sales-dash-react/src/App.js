@@ -24,6 +24,7 @@ class App extends Component {
 			authors: this.buildDTO(),
 			data:this.getChartData()
 		};
+		window.chartData = this.getChartData();	
 	}
 	
 	buildDTO() {
@@ -53,6 +54,7 @@ class App extends Component {
 			  expenses: Math.random() * 5000
 			});
 		}
+		return data;
 	}
 	
 	render() {
@@ -62,7 +64,7 @@ class App extends Component {
 				<BookGrid  books={this.state.dto} />
 				</div>
 				<div id="adjustR">
-				<SalesChart authors={this.state.dto} />
+				<SalesChart data={this.state.data} />
 				</div>
 			</div>
 		);
@@ -83,8 +85,15 @@ class SalesChart extends React.Component {
   render() {
     return (
 			<FlexChart
-			{itemsSource:{this.props.data}}
-				{bindingX:{this.props.data.country}}
+				itemsSource={this.props.data}
+				bindingX={'country'}
+				series={[
+					{ binding: 'sales', name: 'Sales' },
+				  { binding: 'expenses', name: 'Expenses' },
+				  { binding: 'downloads', name: 'Downloads' }
+				]}
+			  
+			
 			/>
     );
   }
