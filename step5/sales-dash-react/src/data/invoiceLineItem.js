@@ -6,7 +6,9 @@ export function getLineItems(){
 		{id:2,saleDate:"2018-05-01",quantity:370,salePriceEach:3.25,salesRepId:1,bookstoreId:1,bookId:1,warehouseId:2},
 		{id:3,saleDate:"2018-05-01",quantity:480,salePriceEach:1.75,salesRepId:1,bookstoreId:2,bookId:1,warehouseId:3},
 		{id:4,saleDate:"2018-05-02",quantity:220,salePriceEach:2.21,salesRepId:1,bookstoreId:3,bookId:1,warehouseId:3},
-		{id:5,saleDate:"2018-05-01",quantity:250,salePriceEach:1.75,salesRepId:1,bookstoreId:3,bookId:1,warehouseId:4}
+		{id:5,saleDate:"2018-05-01",quantity:250,salePriceEach:1.75,salesRepId:1,bookstoreId:3,bookId:1,warehouseId:4},
+		{id:6,saleDate:"2018-05-04",quantity:250,salePriceEach:1.75,salesRepId:3,bookstoreId:4,bookId:1,warehouseId:4},
+		{id:7,saleDate:"2018-05-05",quantity:250,salePriceEach:1.75,salesRepId:2,bookstoreId:4,bookId:1,warehouseId:4}
 	];
 	return allLineItems;
 }

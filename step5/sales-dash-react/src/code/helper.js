@@ -10,6 +10,9 @@ export class helper {
 		var outItems = [];
 		for (var x = 0; x < arrayOfItems.length; x++){
 			//console.log("arrayOfItems[x][idPropertyName] : " + arrayOfItems[x][idPropertyName]);
+			if (propertyValue == undefined){
+				outItems.push(arrayOfItems[x]);
+			}
 			if (arrayOfItems[x][propertyName] === propertyValue){
 				//console.log(arrayOfItems[x][propertyName]);
 				outItems.push(arrayOfItems[x]);

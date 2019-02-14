@@ -44,17 +44,46 @@ class App extends Component {
 	}
 	
 	getChartData(){
-	  var countries = 'US,Germany,UK,Japan,Italy,Greece'.split(','),
-      data = [];
-		for (var i = 0; i < countries.length; i++) {
+	  var h = new helper();
+	  var bookstores = h.selectItems("name",getBookStores());
+      var data = [];
+		for (var i = 0; i < bookstores.length; i++) {
 			data.push({
-			  country: countries[i],
-			  downloads: Math.round(Math.random() * 20000),
-			  sales: Math.random() * 10000,
-			  expenses: Math.random() * 5000
+			  bookstore: bookstores[i].name + "("+ bookstores[i].location + ")",
+			  sales: this.calculateSalesAndQuantityByStore(h,bookstores[i].id)[0],
+			  quantity: this.calculateSalesAndQuantityByStore(h,bookstores[i].id)[1],
+			  expenses: this.calculateCostOfGoodsSold(h,bookstores[i].id)
 			});
 		}
 		return data;
+	}
+	
+	calculateCostOfGoodsSold(helper,storeId){
+		var lineItems = helper.selectItemsById(getLineItems(), "bookstoreId", storeId);
+		var bookCost = 0;
+		for (var itemCount = 0; itemCount < lineItems.length;itemCount++){
+			bookCost += helper.selectItemValuesById("printCost", getBooks(), "id", lineItems[itemCount].bookId) * lineItems[itemCount].quantity;
+		}
+		return bookCost;
+	}
+	
+	calculateSalesAndQuantityByStore(helper,storeId){
+		// returns array of two values 
+		// [0] is totalSales
+		// [1] is quantity sold
+		console.log(storeId);
+		var lineItems = helper.selectItemsById(getLineItems(), "bookstoreId", storeId);
+		console.log(lineItems);
+		var totalStoreSales = 0;
+		var totalStoreQuantity = 0;
+		for (var itemCount = 0; itemCount < lineItems.length;itemCount++){
+			totalStoreSales += lineItems[itemCount].quantity * lineItems[itemCount].salePriceEach;
+			totalStoreQuantity += lineItems[itemCount].quantity;
+		}
+		var salesAndQuantity = [];
+		salesAndQuantity.push(totalStoreSales);
+		salesAndQuantity.push(totalStoreQuantity);
+		return salesAndQuantity;
 	}
 	
 	render() {
@@ -86,14 +115,12 @@ class SalesChart extends React.Component {
     return (
 			<FlexChart
 				itemsSource={this.props.data}
-				bindingX={'country'}
+				bindingX={'bookstore'}
 				series={[
 					{ binding: 'sales', name: 'Sales' },
-				  { binding: 'expenses', name: 'Expenses' },
-				  { binding: 'downloads', name: 'Downloads' }
+				  { binding: 'expenses', name: 'Cost of Goods' },
+				  { binding: 'quantity', name: 'Books Sold' }
 				]}
-			  
-			
 			/>
     );
   }
